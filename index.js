@@ -2,6 +2,12 @@ const express = require("express");
 require("dotenv").config();
 require("express-async-errors");
 
+// Security
+const xss = require("xss-clean");
+const helmet = require("helmet");
+const cors = require("cors");
+const rateLimiter = require("express-rate-limit");
+
 // Swagger
 const swaggerUI = require("swagger-ui-express");
 const { swaggerDocs } = require("./utils/swagger");
@@ -14,6 +20,19 @@ const app = express();
 
 app.use(express.json());
 app.use(express.raw());
+app.use(xss());
+app.use(helmet());
+app.use(cors());
+
+// Security middleware
+app.set("trust proxy", 1);
+// Limit each IP to request 3000 times in 15 mins
+app.use(
+  rateLimiter({
+    windowMs: 15 * 60 * 1000,
+    max: 200,
+  })
+);
 
 const port = process.env.PORT || 4000;
 
