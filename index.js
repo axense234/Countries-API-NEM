@@ -50,9 +50,8 @@ app.use(`/api/${version}/docs`, swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 const startServer = async () => {
   try {
-    await connectDB(process.env.MONGO_URI).then(() => {
-      console.log("Connected to MongoDB.");
-    });
+    await connectDB(process.env.MONGO_URI);
+    console.log("Connected to MONGODB!");
     app.listen(port, () => {
       console.log(`Server is listening on port:${port}...`);
     });
