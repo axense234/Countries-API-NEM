@@ -22,7 +22,7 @@ const getAllCountries = async (req, res) => {
 
     const regEx = /\b(>=|>|=|<|<=)\b/g;
 
-    let filters = numericFilters.replace(
+    const filters = numericFilters.replace(
       regEx,
       (match) => `-${operatorMap[match]}-`
     );
@@ -35,7 +35,7 @@ const getAllCountries = async (req, res) => {
       "mainAgeStructure",
     ];
 
-    filters = filters.split(",").forEach((item) => {
+    filters.split(",").forEach((item) => {
       const [field, operator, value] = item.split("-");
       if (options.includes(field) && field === "populationNumber") {
         queryObject.population.number = { [operator]: Number(value) };

@@ -34,7 +34,7 @@ app.use(
   })
 );
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 // Routers Import and Error Handler
 const ErrorHandlerMiddleware = require("./middleware/ErrorHandler");
@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
 
 app.use("/countries", [countries]);
 app.use(ErrorHandlerMiddleware);
-app.use(`/api/${version}/docs`, swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+app.use(`/api/${version}/docs/`, swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 const startServer = async () => {
   try {

@@ -2,6 +2,37 @@
 
 A **NODE EXPRESS MONGOOSE MONGODB API** created in order to practice and further expand my knowledge of **backend** technologies.
 
+## **Getting Started**
+
+### Dependencies
+
+- check package.json for details
+- you might want to have your own mongodb database(preferably through mongodb atlas)
+
+### Installation
+
+- run the following commands:
+
+```
+git clone https://github.com/axense234/Countries-API-NEM.git
+cd Countries-API-NEM
+npm install
+```
+
+- rename **.env.sample** to **.env** and add your own environment variables corespondly:
+  - _MONGO_URI_ = your own mongodb database uri
+  - _SECRET_JWT_KEY_ = your secret jwt key
+  - _SWAGGER_UI_PASSWORD_ = your swagger password for the authorization route
+  - _SWAGGER_UI_USERNAME_ = your swagger username for the authorization route
+
+### Executing program
+
+- test the server with nodemon
+
+```
+npm test
+```
+
 ## **Documentation and resources used:**
 
 1. [Docs](https://countries-api-nem-ca.onrender.com)(made with [Swagger](https://swagger.io))
