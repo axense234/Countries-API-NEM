@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  server:
+    image: countries-api-nem:latest
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - SECRET_JWT_KEY=${SECRET_JWT_KEY}
+      - SWAGGER_UI_PASSWORD=${SWAGGER_UI_PASSWORD}
+      - SWAGGER_UI_USERNAME=${SWAGGER_UI_USERNAME}
+      - PORT=${PORT}
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:${PORT} || exit 1"]
+
+  mongo-db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - mongo-data:/data/mongo-db
+
+  mongo-db-express-ui:
+    image: mongo-express:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_USERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_PASSWORD}
+      - ME_CONFIG_MONGODB_SERVER=${MONGO_SERVER}
+volumes:
+  mongo-data:
+    driver: local

@@ -6,8 +6,10 @@ A **NODE EXPRESS MONGOOSE MONGODB API** created in order to practice and further
 
 ### Dependencies
 
-- check package.json for details
-- you might want to have your own mongodb database(preferably through mongodb atlas)
+- Git installed on your machine
+- Docker installed on your machine(optional)
+- A Mongo DB(atlas, local or container)
+- Check package.json for other dependencies
 
 ### Installation
 
@@ -19,18 +21,29 @@ cd Countries-API-NEM
 npm install
 ```
 
-- rename **.env.sample** to **.env** and add your own environment variables corespondly:
-  - _MONGO_URI_ = your own mongodb database uri
-  - _SECRET_JWT_KEY_ = your secret jwt key
-  - _SWAGGER_UI_PASSWORD_ = your swagger password for the authorization route
-  - _SWAGGER_UI_USERNAME_ = your swagger username for the authorization route
+- rename **.env.sample** to **.env** and add your own environment variables:
+  - **SECRET_JWT_KEY** = your secret jwt key used for authorization
+  - **SWAGGER_UI_PASSWORD** = your swagger ui password
+  - **SWAGGER_UI_USERNMAE** = your swagger ui usernmae
+  - **MONGO_USERNAME** = your mongo db username
+  - **MONGO_PASSWORD** = your mongo db password
+  - **MONGO_SERVER** = your mongo db server
+  - **PORT** = the port which your server runs on
+  - **MONGO_URI** = the connection string of your mongo db (it's composed of other env vars)
 
 ### Executing program
 
-- test the server with nodemon
+- Test the server using nodemon
 
 ```
 npm test
+```
+
+- Test the server using docker-compose
+
+```
+docker build -t countries-api-nem .
+docker compose up
 ```
 
 ## **Documentation and resources used:**
